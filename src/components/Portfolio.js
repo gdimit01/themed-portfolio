@@ -191,7 +191,7 @@ const Portfolio = () => {
             </div>
             <div className="w-full md:w-1/2 relative">
               <img
-                src="https://via.placeholder.com/600x600"
+                src={`${process.env.PUBLIC_URL}/assets/photo-id.jpg`}
                 alt="Georgi"
                 className="relative z-10 rounded-full w-64 h-64 md:w-80 md:h-80 object-cover mx-auto md:mx-0"
                 style={{ marginLeft: "45px" }} // Adjust this value to move the avatar more or less to the right
