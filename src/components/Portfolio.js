@@ -31,6 +31,47 @@ const projects = [
   },
 ];
 
+const workHistory = [
+  {
+    company: "Health Training Online Ltd",
+    role: "Software Developer",
+    period: "March 2024 – present",
+    description: `
+      - Full Stack: Proficient in PHP, MySQL, VSCode, PHPStorm, React, TypeScript, JavaScript, Nodejs, Expressjs, MongoDB, Dotnet, and C#.
+      - Demonstrates strong problem-solving and debugging skills evidenced by effectively navigating and innovating within a PHP legacy codebase.
+      - Rewriting the legacy codebase with a modern tech stack of React, Typescript, Nodejs, Expressjs, MongoDB, Dotnet, and C#.
+      - Ability to work on my own, as a team and communicate any issues to the team.
+    `
+      .split("\n")
+      .map((str) => str.trim())
+      .join("\n\n"),
+  },
+  {
+    company: "TMLEP",
+    role: "Junior Software Developer",
+    period: "December 2023 to February 2024",
+    description: `
+      - Skilled Junior Software Developer proficient in TypeScript, Angular, JavaScript, CSS, and other technologies with a strong focus on code quality and enterprise codebase.
+      - Demonstrates meticulous attention to detail and commitment to continuous professional development and effective communication.
+    `
+      .split("\n")
+      .map((str) => str.trim())
+      .join("\n\n"),
+  },
+  {
+    company: "FXDigital",
+    role: "Junior Quality Engineer Intern",
+    period: "September 2023 to November 2023",
+    description: `
+      - Experienced in designing and executing test cases and automated scripts aligned with product specifications ensuring thorough functional and regression testing for software quality.
+      - Collaborates closely with development teams diligently documenting tests and logging defects to optimize product updates and compliance.
+    `
+      .split("\n")
+      .map((str) => str.trim())
+      .join("\n\n"),
+  },
+];
+
 const skills = ["React", "JavaScript", "HTML/CSS", "Node.js", "Python", "SQL"];
 
 const ThemeToggle = ({ currentTheme, setTheme }) => (
@@ -93,7 +134,7 @@ const Portfolio = () => {
       bg: "bg-gradient-to-br from-purple-700 via-pink-500 to-teal-300",
       text: "text-white",
       accent: "text-yellow-300",
-      navBg: "bg-purple-800 bg-opacity-50",
+      navBg: "bg-purple-800",
       cardBg: "bg-pink-500 bg-opacity-30 backdrop-blur-md",
       button: "bg-teal-300 hover:bg-teal-400 text-purple-900",
       buttonOutline:
@@ -118,15 +159,17 @@ const Portfolio = () => {
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-center space-x-4">
-                {["Home", "Projects", "Skills", "Contact"].map((item) => (
-                  <a
-                    key={item}
-                    href={`#${item.toLowerCase()}`}
-                    className={`px-3 py-2 rounded-md text-sm font-medium ${colors.text} hover:${colors.accent}`}
-                  >
-                    {item}
-                  </a>
-                ))}
+                {["Home", "Projects", "Skills", "Work History", "Contact"].map(
+                  (item) => (
+                    <a
+                      key={item}
+                      href={`#${item.toLowerCase().replace(" ", "-")}`}
+                      className={`px-3 py-2 rounded-md text-sm font-medium ${colors.text} hover:${colors.accent}`}
+                    >
+                      {item}
+                    </a>
+                  )
+                )}
                 <ThemeToggle currentTheme={theme} setTheme={setTheme} />
               </div>
             </div>
@@ -146,16 +189,18 @@ const Portfolio = () => {
             className={`md:hidden absolute top-16 inset-x-0 z-10 ${colors.navBg} shadow-lg`}
           >
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              {["Home", "Projects", "Skills", "Contact"].map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className={`block px-3 py-2 rounded-md text-base font-medium ${colors.text} hover:${colors.accent}`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item}
-                </a>
-              ))}
+              {["Home", "Projects", "Skills", "Work History", "Contact"].map(
+                (item) => (
+                  <a
+                    key={item}
+                    href={`#${item.toLowerCase().replace(" ", "-")}`}
+                    className={`block px-3 py-2 rounded-md text-base font-medium ${colors.text} hover:${colors.accent}`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item}
+                  </a>
+                )
+              )}
             </div>
           </div>
         )}
@@ -230,6 +275,39 @@ const Portfolio = () => {
                     Learn More
                   </a>
                 </div>
+              </div>
+            ))}
+          </div>
+        </section>
+        <section id="work-history" className="mb-20">
+          <h2 className={`text-4xl font-bold mb-8 ${colors.accent}`}>
+            Work History
+          </h2>
+          <div className="space-y-8">
+            {workHistory.map((job, index) => (
+              <div
+                key={index}
+                className={`${
+                  colors.cardBg
+                } rounded-lg shadow-md p-6 hover:shadow-xl transition duration-300 ${
+                  theme === "vaporwave" ? "border-2 border-pink-500" : ""
+                }`}
+              >
+                <h3 className={`font-bold text-2xl mb-2 ${colors.text}`}>
+                  {job.role}
+                </h3>
+                <h4 className={`font-semibold text-xl mb-2 ${colors.accent}`}>
+                  {job.company} ({job.period})
+                </h4>
+                <p className={colors.text}>
+                  {job.description.split("\n\n").map((paragraph, index) => (
+                    <React.Fragment key={index}>
+                      {paragraph}
+                      <br />
+                      <br />
+                    </React.Fragment>
+                  ))}
+                </p>
               </div>
             ))}
           </div>
