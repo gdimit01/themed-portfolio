@@ -15,7 +15,7 @@ const projects = [
     id: 1,
     title: "Simple Ecommerce",
     description: "A brief description of Simple Ecommerce",
-    image: "https://gdimit01.github.io/simple-ecommerce/assets/screenshot.png", // Replace with the actual image URL
+    image: `${process.env.PUBLIC_URL}/assets/ecom-preview.png`, // Dynamic path using PUBLIC_URL
     url: "https://gdimit01.github.io/simple-ecommerce/",
   },
   {
